@@ -6,6 +6,13 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def pagina_inicial():
     resultado = False
+    nome = ''
+    altura = ''
+    peso = ''
+    imc = ''
+    mensagem = ''
+    cor = ''
+
 
     if request.method == 'POST':
 
@@ -39,9 +46,13 @@ def pagina_inicial():
                             peso=peso,
                             imc=imc,
                             mensagem=mensagem,
-                            cor=cor
-                            resultado=resultado)
+                            cor=cor)
 
+    return render_template('index.html', resultado=resultado)
+
+@app.route('/equipe')
+def equipe():
+    return render_template('equipe.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
